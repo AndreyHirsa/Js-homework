@@ -24,21 +24,34 @@ console.log(underage);
 
 
 //3
-const data = [{ firstName: 'Arthas', lastName: 'Menethil', age: 40},{firstName: 'Andrey', lastName: 'Hirsa', age: 22},
-    {firstName: 'Pavel', lastName: 'Pavlovich', age: 40},{ firstName: 'Ashton', lastName: 'Kutcher', age: 40},
+const data = [{firstName: 'Arthas', lastName: 'Menethil', age: 40}, {firstName: 'Andrey', lastName: 'Hirsa', age: 22},
+    {firstName: 'Pavel', lastName: 'Pavlovich', age: 40}, {firstName: 'Ashton', lastName: 'Kutcher', age: 40},
     {firstName: 'Ivan', lastName: 'Ivanovich', age: 40}];
 
-let userLastName = prompt('Enter users lastname','');
-userLastName.toLowerCase();
-let dataToLowerCase=data.map(i=>i.lastName.toLowerCase());
-let userSearch=dataToLowerCase.find(i=> i.lastName===userLastName);
-if(userSearch) {
-    let userSearchToString=userSearch.map(i=>i.toString());
-    alert(userSearchToString);
+
+let userLastName = prompt('Enter user lastname', '').toLowerCase();
+
+let newData = data.map(function (i) {
+    i.lastName = i.lastName.toLowerCase();
+    return i;
+});
+
+let userSearch = newData.find(function (i) {
+    if(i.lastName===userLastName){
+        return i;
+    }
+});
+
+if(userSearch){
+    for(let[key,value]of Object.entries(userSearch)){
+        alert(`${key}:${value}`);
+    }
 }
+
 else{
     alert('No results found for your request');
 }
+
 
 
 
