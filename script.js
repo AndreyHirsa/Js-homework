@@ -1,4 +1,3 @@
-
 //1)
 const numbers = [10, 25, 100, 'not a number'];
 
@@ -58,16 +57,56 @@ else{
 //4
 const values=['a','b','c','v','v','v'];
 
-let countValues=[];
-for(let i in values){
-    if (countValues[values[i]]!==undefined) {
-        (countValues[values[i]]++)
+let countValues=values.reduce(function(acc,value){
+    if(acc[value]){
+        acc[value]++;
     }
-    else {
-        (countValues[values[i]]=1)
+    else{
+        acc[value]=1;
+    }
+    return acc;
+},{});
+
+
+
+console.log(countValues)
+
+
+
+//5
+let arr=[10,2,33,1,33,4,9,22,10];
+
+let arrSorted=arr.sort(function(a,b){
+ return a-b;
+});
+
+let arrNew=arrSorted.filter(function (item,index){
+    return arrSorted.indexOf(item)===index;
+});
+
+
+console.log(arrSorted);
+console.log(arrNew);
+
+
+
+//6
+let word='дед'
+
+function isPalindrom(word){
+    let result;
+    for(let i=0;i<word.length;i++){
+        if(word[i]===word[word.length-1-i]){
+            result='yes'
+        }
+        else{
+            result='no'
+        }
+        return result;
     }
 }
 
-let countObj=Object.assign({},countValues);
-console.log(countObj);
+console.log(isPalindrom(word));
+
+
 
