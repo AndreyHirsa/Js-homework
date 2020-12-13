@@ -42,11 +42,8 @@ let userSearch = newData.find(function (i) {
 });
 
 if(userSearch){
-    for(let[key,value]of Object.entries(userSearch)){
-        alert(`${key}:${value}`);
-    }
+    alert(JSON.stringify(userSearch,null,' '));
 }
-
 else{
     alert('No results found for your request');
 }
