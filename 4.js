@@ -17,9 +17,9 @@ const data = [
 
 function getSchedule(arr) {
     return arr.reduce((acc, it) => {
-        acc[it[1]]=Object.assign({},)
-        return acc
-    }, {})
+        acc[it[1]]=Object.assign({},);
+        return acc;
+    }, {});
 }
 
 console.log(getSchedule(data))
