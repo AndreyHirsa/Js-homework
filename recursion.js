@@ -25,7 +25,7 @@ function toArr(arr) {
 function toArr(arr) {
    return arr.reduce((acc, it) => {
         return Array.isArray(it)?acc.concat(toArr(it)):acc.concat(it);
-    }, []).filter(it=>typeof(it)==='number');
+    }, []).filter(it=>typeof(it)==='number')
 }
 
 
