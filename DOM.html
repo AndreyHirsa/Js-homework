@@ -7,44 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        .modal {
-            width: 100px;
-            height: 100px;
-            border: 1px solid black;
-            margin: auto;
-            background-color: beige;
-        }
-
         .clock {
             border: 1px solid aqua;
             color: red;
             width: 60px;
             height: 15px;
         }
-
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
+<time class="clock"></time>
 <script>
-    const buttonOpen = document.createElement('button');
-    buttonOpen.innerHTML = 'Open';
-    document.body.append(buttonOpen);
-
-    const modal = document.createElement('div');
-    modal.classList.add("hidden");
-    modal.innerHTML = 'Hi';
-    document.body.append(modal)
-
-    const buttonClose = document.createElement('button');
-    buttonClose.innerHTML = 'buttonClose';
-    modal.append(buttonClose)
-
-    const time = document.createElement('div')
-    time.classList.add("clock")
-    modal.append(time)
+    const time = document.querySelector('.clock')
 
     function showClock() {
         const date = new Date()
@@ -58,16 +32,6 @@
 
     showClock();
 
-    buttonOpen.onclick = function () {
-        modal.classList.remove('hidden');
-        modal.classList.add('modal');
-        document.body.style.background = 'gray';
-    }
-
-    buttonClose.onclick = function () {
-        modal.classList.add('hidden');
-        document.body.style.background = 'white'
-    }
 </script>
 </body>
 </html>
