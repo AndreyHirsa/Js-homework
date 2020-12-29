@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hidden {
+            color: white;
+        }
+
+        .users {
+            margin-top: 20px;
+            width: 500px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+
+        }
+
+        .userName, .userAge {
+            border: 1px solid black;
+            height: 20px;
+        }
+
+        .registrationForm {
+            width: 500px;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<form class="registrationForm">
+    <fieldset class="name">
+        <legend>Name</legend>
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+    </fieldset>
+    <fieldset class="age">
+        <legend>Age</legend>
+        <label for="age">Age:</label>
+        <input type="text" id="age" required>
+    </fieldset>
+    <div>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </div>
+</form>
+
+<div class="users">
+    <div class="userName_title">
+        User name
+    </div>
+    <div class="userAge_title">
+        User Age
+    </div>
+    <div class="userName"></div>
+    <div class="userAge"></div>
+</div>
+<button class="delete_user_button">delete User</button>
+
+<script>
+    const registrationForm = document.querySelector('.registrationForm');
+    const ageFieldset = document.querySelector('.age');
+    const nameFieldset = document.querySelector('.name');
+    const nameInput = document.querySelector('#name');
+    const ageInput = document.querySelector('#age');
+    const nameIsNotValid = document.createElement('div');
+    const ageIsNotValid = document.createElement('div');
+    const userName = document.querySelector('.userName');
+    const userAge = document.querySelector('.userAge');
+    const deleteUserButton = document.querySelector('.delete_user_button');
+
+    nameIsNotValid.textContent = 'Name is not valid!';
+    nameFieldset.append(nameIsNotValid);
+
+    ageIsNotValid.textContent = 'Age is not valid!';
+    ageFieldset.append(ageIsNotValid);
+
+    nameIsNotValid.classList.add("hidden");
+    ageIsNotValid.classList.add("hidden");
+
+
+    registrationForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        let validInputs = 0
+        if (nameInput.value.length > 30 || nameInput.value.length < 5) {
+            nameIsNotValid.classList.remove("hidden");
+            nameInput.value = "";
+            nameInput.addEventListener('focus', function () {
+                nameIsNotValid.classList.add("hidden");
+            })
+        } else {
+            validInputs++;
+        }
+        let ageIsValid = Number(ageInput.value);
+        if (isNaN(ageIsValid) || ageIsValid < 18 || ageIsValid > 80) {
+            ageIsNotValid.classList.remove("hidden");
+            ageInput.value = "";
+            ageInput.addEventListener('focus', function () {
+                ageIsNotValid.classList.add("hidden");
+            })
+        } else {
+            validInputs++;
+        }
+        if (validInputs === 2) {
+            userName.textContent = nameInput.value;
+            userAge.textContent = ageInput.value;
+            registrationForm.reset();
+        }
+    });
+
+    deleteUserButton.addEventListener('click', function () {
+        if (userName.textContent==="") {
+            alert('Nothing to delete!');
+        } else {
+            let confirmDelete = confirm('Delete this User?')
+            if (confirmDelete) {
+                userAge.textContent = '';
+                userName.textContent = '';
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

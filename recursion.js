@@ -21,7 +21,7 @@ function toArr(arr) {
 //2
 
 // получается не сильно читабельная конструкция,
-// есть какой то более очевидный вариант с reduce?
+// есть какой то более очевидный вариант с reduce? И нужно ли её переписать без фильтра?:)
 function toArr(arr) {
    return arr.reduce((acc, it) => {
         return Array.isArray(it)?acc.concat(toArr(it)):acc.concat(it);
